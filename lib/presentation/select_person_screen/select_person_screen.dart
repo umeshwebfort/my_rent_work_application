@@ -42,7 +42,7 @@ class SelectPersonScreen extends StatelessWidget {
         ),
         body: Container(
           height: getVerticalSize(
-            875,
+            635,
           ),
           width: double.maxFinite,
           child: Stack(
@@ -60,7 +60,7 @@ class SelectPersonScreen extends StatelessWidget {
                     children: [
                       Container(
                         height: getVerticalSize(
-                          866,
+                          609,
                         ),
                         width: double.maxFinite,
                         margin: getMargin(

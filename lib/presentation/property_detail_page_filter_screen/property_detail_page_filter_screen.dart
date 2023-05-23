@@ -873,39 +873,9 @@ class PropertyDetailPageFilterScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: CustomBottomBar(
-          onChanged: (BottomBarEnum type) {
-            Navigator.pushNamed(
-                navigatorKey.currentContext!, getCurrentRoute(type));
-          },
-        ),
       ),
     );
   }
 
   ///Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Home:
-        return AppRoutes.dashboardScreenContainerPage;
-      case BottomBarEnum.Add:
-        return "/";
-      case BottomBarEnum.Access:
-        return "/";
-      case BottomBarEnum.Chat:
-        return "/";
-      default:
-        return "/";
-    }
-  }
-
-  ///Handling page based on route
-  Widget getCurrentPage(String currentRoute) {
-    switch (currentRoute) {
-      case AppRoutes.dashboardScreenContainerPage:
-        return DashboardScreenContainerPage();
-      default:
-        return DefaultWidget();
-    }
-  }
 }

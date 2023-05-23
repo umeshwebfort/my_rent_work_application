@@ -27,7 +27,7 @@ class ChatOneScreen extends StatelessWidget {
             margin: getMargin(
               left: 20,
               top: 15,
-              bottom: 16,
+              bottom: 5,
             ),
           ),
           title: AppbarTitle(
@@ -57,7 +57,7 @@ class ChatOneScreen extends StatelessWidget {
                     children: [
                       Container(
                         height: getVerticalSize(
-                          866,
+                          609,
                         ),
                         width: double.maxFinite,
                         margin: getMargin(
@@ -87,10 +87,10 @@ class ChatOneScreen extends StatelessWidget {
                 alignment: Alignment.topCenter,
                 child: Padding(
                   padding: getPadding(
-                    left: 21,
-                    top: 47,
-                    right: 18,
-                    bottom: 728,
+                    left: 15,
+                    top: 25,
+                    right: 15,
+                    bottom: 0,
                   ),
                   child: ListView.separated(
                     physics: BouncingScrollPhysics(),

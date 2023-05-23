@@ -1,3 +1,5 @@
+import 'package:my_rent_work_application/presentation/dashboard_screen_container1_screen/dashboard_screen_container1_screen.dart';
+
 import '../access_control_screen/widgets/access_control_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:my_rent_work_application/core/app_export.dart';
@@ -8,7 +10,12 @@ import 'package:my_rent_work_application/widgets/app_bar/custom_app_bar.dart';
 import 'package:my_rent_work_application/widgets/custom_bottom_bar.dart';
 import 'package:my_rent_work_application/widgets/custom_button.dart';
 
-class AccessControlScreen extends StatelessWidget {
+class AccessControlScreen extends StatefulWidget {
+  @override
+  State<AccessControlScreen> createState() => _AccessControlScreenState();
+}
+
+class _AccessControlScreenState extends State<AccessControlScreen> {
   GlobalKey<NavigatorState> navigatorKey = GlobalKey();
 
   @override
@@ -58,6 +65,10 @@ class AccessControlScreen extends StatelessWidget {
               ),
               variant: ButtonVariant.FillRed700,
               fontStyle: ButtonFontStyle.InterRegular16Gray100,
+              onTap: () {
+                print("Helo");
+                Navigator.pushNamed(context, AppRoutes.selectPersonScreen);
+              },
             ),
           ],
         ),
@@ -81,7 +92,7 @@ class AccessControlScreen extends StatelessWidget {
                     children: [
                       Container(
                         height: getVerticalSize(
-                          866,
+                          598,
                         ),
                         width: double.maxFinite,
                         margin: getMargin(
@@ -177,39 +188,7 @@ class AccessControlScreen extends StatelessWidget {
             ],
           ),
         ),
-        bottomNavigationBar: CustomBottomBar(
-          onChanged: (BottomBarEnum type) {
-            Navigator.pushNamed(
-                navigatorKey.currentContext!, getCurrentRoute(type));
-          },
-        ),
       ),
     );
-  }
-
-  ///Handling route based on bottom click actions
-  String getCurrentRoute(BottomBarEnum type) {
-    switch (type) {
-      case BottomBarEnum.Home:
-        return AppRoutes.dashboardScreenContainerPage;
-      case BottomBarEnum.Add:
-        return "/";
-      case BottomBarEnum.Access:
-        return "/";
-      case BottomBarEnum.Chat:
-        return "/";
-      default:
-        return "/";
-    }
-  }
-
-  ///Handling page based on route
-  Widget getCurrentPage(String currentRoute) {
-    switch (currentRoute) {
-      case AppRoutes.dashboardScreenContainerPage:
-        return DashboardScreenContainerPage();
-      default:
-        return DefaultWidget();
-    }
   }
 }

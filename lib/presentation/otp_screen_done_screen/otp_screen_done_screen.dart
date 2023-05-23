@@ -249,7 +249,7 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
                               padding: ButtonPadding.PaddingAll9,
                               fontStyle: ButtonFontStyle.InterRegular18,
                               onTap: () async {
-                                print(smsCode);
+                                print("${smsCode} Umesh bind SMS Code");
                                 try {
                                   PhoneAuthCredential credential =
                                       PhoneAuthProvider.credential(
@@ -261,7 +261,7 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
                                   await auth.signInWithCredential(credential);
                                   Navigator.pushNamedAndRemoveUntil(
                                       context,
-                                      "dashboard_screen_container_page",
+                                      "/dashboard_screen_container_page",
                                       (route) => false);
                                 } catch (e) {
                                   print("wrong OTP");

@@ -132,7 +132,7 @@ class DashboardScreenContainerPage extends StatelessWidget {
                       children: [
                         Container(
                           height: getVerticalSize(
-                            109,
+                            115,
                           ),
                           width: getHorizontalSize(
                             326,
@@ -383,7 +383,7 @@ class DashboardScreenContainerPage extends StatelessWidget {
                         ),
                         Container(
                           height: getVerticalSize(
-                            186,
+                            195,
                           ),
                           width: getHorizontalSize(
                             323,
@@ -391,71 +391,175 @@ class DashboardScreenContainerPage extends StatelessWidget {
                           margin: getMargin(
                             top: 14,
                           ),
-                          child: Stack(
-                            alignment: Alignment.center,
-                            children: [
-                              Align(
-                                alignment: Alignment.topLeft,
-                                child: Padding(
-                                  padding: getPadding(
-                                    left: 69,
-                                    top: 33,
-                                  ),
-                                  child: Text(
-                                    "Shanti Villa",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.txtInterBold16,
+                          child: InkWell(
+                            onTap: () => Navigator.pushNamed(context,
+                                AppRoutes.propertyDetailPageFilterScreen),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
+                                Align(
+                                  alignment: Alignment.topLeft,
+                                  child: Padding(
+                                    padding: getPadding(
+                                      left: 69,
+                                      top: 33,
+                                    ),
+                                    child: Text(
+                                      "Shanti Villa",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.txtInterBold16,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Container(
-                                  padding: getPadding(
-                                    left: 9,
-                                    top: 10,
-                                    right: 9,
-                                    bottom: 10,
-                                  ),
-                                  decoration:
-                                      AppDecoration.outlineGray400.copyWith(
-                                    borderRadius:
-                                        BorderRadiusStyle.roundedBorder10,
-                                  ),
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: getPadding(
-                                          left: 4,
-                                          right: 18,
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    padding: getPadding(
+                                      left: 9,
+                                      top: 10,
+                                      right: 9,
+                                      bottom: 10,
+                                    ),
+                                    decoration:
+                                        AppDecoration.outlineGray400.copyWith(
+                                      borderRadius:
+                                          BorderRadiusStyle.roundedBorder10,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: getPadding(
+                                            left: 4,
+                                            right: 18,
+                                          ),
+                                          child: Row(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              CustomImageView(
+                                                imagePath:
+                                                    ImageConstant.imgBulding1,
+                                                height: getVerticalSize(
+                                                  46,
+                                                ),
+                                                width: getHorizontalSize(
+                                                  50,
+                                                ),
+                                                margin: getMargin(
+                                                  top: 1,
+                                                  bottom: 6,
+                                                ),
+                                              ),
+                                              Expanded(
+                                                child: Padding(
+                                                  padding: getPadding(
+                                                    left: 6,
+                                                  ),
+                                                  child: Column(
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .start,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment.start,
+                                                    children: [
+                                                      Text(
+                                                        "Shanti Villa",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: AppStyle
+                                                            .txtInterBold16,
+                                                      ),
+                                                      Container(
+                                                        height: getVerticalSize(
+                                                          31,
+                                                        ),
+                                                        width:
+                                                            getHorizontalSize(
+                                                          224,
+                                                        ),
+                                                        margin: getMargin(
+                                                          left: 2,
+                                                          top: 1,
+                                                        ),
+                                                        child: Stack(
+                                                          alignment: Alignment
+                                                              .bottomLeft,
+                                                          children: [
+                                                            Align(
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topCenter,
+                                                              child: Text(
+                                                                "Pocket 6, Sector 9, Rohini, Delhi, India...",
+                                                                overflow:
+                                                                    TextOverflow
+                                                                        .ellipsis,
+                                                                textAlign:
+                                                                    TextAlign
+                                                                        .left,
+                                                                style: AppStyle
+                                                                    .txtInterRegular12,
+                                                              ),
+                                                            ),
+                                                            CustomDropDown(
+                                                              width:
+                                                                  getHorizontalSize(
+                                                                106,
+                                                              ),
+                                                              focusNode:
+                                                                  FocusNode(),
+                                                              hintText:
+                                                                  "Access Control",
+                                                              variant:
+                                                                  DropDownVariant
+                                                                      .None,
+                                                              padding:
+                                                                  DropDownPadding
+                                                                      .PaddingT1,
+                                                              fontStyle:
+                                                                  DropDownFontStyle
+                                                                      .InterMedium12,
+                                                              alignment: Alignment
+                                                                  .bottomLeft,
+                                                              items:
+                                                                  dropdownItemList,
+                                                              onChanged:
+                                                                  (value) {},
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ),
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgBulding1,
-                                              height: getVerticalSize(
-                                                46,
-                                              ),
-                                              width: getHorizontalSize(
-                                                50,
-                                              ),
-                                              margin: getMargin(
-                                                top: 1,
-                                                bottom: 6,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Padding(
+                                        Padding(
+                                          padding: getPadding(
+                                            left: 4,
+                                            top: 7,
+                                            bottom: 7,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
                                                 padding: getPadding(
-                                                  left: 6,
+                                                  top: 5,
+                                                  bottom: 8,
                                                 ),
                                                 child: Column(
                                                   crossAxisAlignment:
@@ -463,260 +567,29 @@ class DashboardScreenContainerPage extends StatelessWidget {
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
                                                   children: [
-                                                    Text(
-                                                      "Shanti Villa",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterBold16,
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        left: 18,
+                                                      ),
+                                                      child: Text(
+                                                        "Rent Status",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: AppStyle
+                                                            .txtInterMedium13,
+                                                      ),
                                                     ),
-                                                    Container(
-                                                      height: getVerticalSize(
-                                                        31,
-                                                      ),
-                                                      width: getHorizontalSize(
-                                                        224,
-                                                      ),
-                                                      margin: getMargin(
+                                                    Padding(
+                                                      padding: getPadding(
                                                         left: 2,
-                                                        top: 1,
+                                                        top: 10,
                                                       ),
-                                                      child: Stack(
-                                                        alignment: Alignment
-                                                            .bottomLeft,
+                                                      child: Row(
                                                         children: [
-                                                          Align(
-                                                            alignment: Alignment
-                                                                .topCenter,
-                                                            child: Text(
-                                                              "Pocket 6, Sector 9, Rohini, Delhi, India...",
-                                                              overflow:
-                                                                  TextOverflow
-                                                                      .ellipsis,
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .left,
-                                                              style: AppStyle
-                                                                  .txtInterRegular12,
-                                                            ),
-                                                          ),
-                                                          CustomDropDown(
-                                                            width:
-                                                                getHorizontalSize(
-                                                              106,
-                                                            ),
-                                                            focusNode:
-                                                                FocusNode(),
-                                                            hintText:
-                                                                "Access Control",
-                                                            variant:
-                                                                DropDownVariant
-                                                                    .None,
-                                                            padding:
-                                                                DropDownPadding
-                                                                    .PaddingT1,
-                                                            fontStyle:
-                                                                DropDownFontStyle
-                                                                    .InterMedium12,
-                                                            alignment: Alignment
-                                                                .bottomLeft,
-                                                            items:
-                                                                dropdownItemList,
-                                                            onChanged:
-                                                                (value) {},
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: getPadding(
-                                          left: 4,
-                                          top: 7,
-                                          bottom: 7,
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 5,
-                                                bottom: 8,
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 18,
-                                                    ),
-                                                    child: Text(
-                                                      "Rent Status",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterMedium13,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 2,
-                                                      top: 10,
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          "Total",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: AppStyle
-                                                              .txtInterRegular12Bluegray900,
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            left: 47,
-                                                          ),
-                                                          child: RichText(
-                                                            text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                  text: "₹",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .cyan900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                ),
-                                                                TextSpan(
-                                                                  text:
-                                                                      "100000",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .cyan900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w600,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      top: 4,
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          "Received",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: AppStyle
-                                                              .txtInterRegular12Bluegray900,
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            left: 23,
-                                                          ),
-                                                          child: RichText(
-                                                            text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                  text: "₹",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .green900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                                TextSpan(
-                                                                  text:
-                                                                      "100000",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .green900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                              ],
-                                                            ),
-                                                            textAlign:
-                                                                TextAlign.left,
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      top: 5,
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            top: 1,
-                                                          ),
-                                                          child: Text(
-                                                            "Pending",
+                                                          Text(
+                                                            "Total",
                                                             overflow:
                                                                 TextOverflow
                                                                     .ellipsis,
@@ -725,649 +598,323 @@ class DashboardScreenContainerPage extends StatelessWidget {
                                                             style: AppStyle
                                                                 .txtInterRegular12Bluegray900,
                                                           ),
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            left: 29,
-                                                            bottom: 1,
-                                                          ),
-                                                          child: RichText(
-                                                            text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                  text: "₹",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .pink900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                                TextSpan(
-                                                                  text:
-                                                                      "100000",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .pink900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                              ],
+                                                          Padding(
+                                                            padding: getPadding(
+                                                              left: 47,
                                                             ),
+                                                            child: RichText(
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: "₹",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .cyan900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text:
+                                                                        "100000",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .cyan900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w600,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        top: 4,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Received",
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                             textAlign:
                                                                 TextAlign.left,
+                                                            style: AppStyle
+                                                                .txtInterRegular12Bluegray900,
                                                           ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(
-                                                97,
-                                              ),
-                                              child: VerticalDivider(
-                                                width: getHorizontalSize(
-                                                  1,
-                                                ),
-                                                thickness: getVerticalSize(
-                                                  1,
-                                                ),
-                                                color: ColorConstant.gray400,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 2,
-                                                bottom: 49,
-                                              ),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 17,
-                                                    ),
-                                                    child: Text(
-                                                      "Maintenance",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterMedium13,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      top: 14,
-                                                    ),
-                                                    child: Row(
-                                                      children: [
-                                                        Text(
-                                                          "Total",
-                                                          overflow: TextOverflow
-                                                              .ellipsis,
-                                                          textAlign:
-                                                              TextAlign.left,
-                                                          style: AppStyle
-                                                              .txtInterRegular12Bluegray900,
-                                                        ),
-                                                        Padding(
-                                                          padding: getPadding(
-                                                            left: 50,
-                                                          ),
-                                                          child: RichText(
-                                                            text: TextSpan(
-                                                              children: [
-                                                                TextSpan(
-                                                                  text: "₹",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .black900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                                TextSpan(
-                                                                  text:
-                                                                      "100000",
-                                                                  style:
-                                                                      TextStyle(
-                                                                    color: ColorConstant
-                                                                        .black900,
-                                                                    fontSize:
-                                                                        getFontSize(
-                                                                      12,
-                                                                    ),
-                                                                    fontFamily:
-                                                                        'Inter',
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .w700,
-                                                                  ),
-                                                                ),
-                                                              ],
+                                                          Padding(
+                                                            padding: getPadding(
+                                                              left: 23,
                                                             ),
+                                                            child: RichText(
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: "₹",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .green900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text:
+                                                                        "100000",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .green900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        top: 5,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Padding(
+                                                            padding: getPadding(
+                                                              top: 1,
+                                                            ),
+                                                            child: Text(
+                                                              "Pending",
+                                                              overflow:
+                                                                  TextOverflow
+                                                                      .ellipsis,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                              style: AppStyle
+                                                                  .txtInterRegular12Bluegray900,
+                                                            ),
+                                                          ),
+                                                          Padding(
+                                                            padding: getPadding(
+                                                              left: 29,
+                                                              bottom: 1,
+                                                            ),
+                                                            child: RichText(
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: "₹",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .pink900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text:
+                                                                        "100000",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .pink900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: getVerticalSize(
+                                                  97,
+                                                ),
+                                                child: VerticalDivider(
+                                                  width: getHorizontalSize(
+                                                    1,
+                                                  ),
+                                                  thickness: getVerticalSize(
+                                                    1,
+                                                  ),
+                                                  color: ColorConstant.gray400,
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: getPadding(
+                                                  top: 2,
+                                                  bottom: 49,
+                                                ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        left: 17,
+                                                      ),
+                                                      child: Text(
+                                                        "Maintenance",
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        textAlign:
+                                                            TextAlign.left,
+                                                        style: AppStyle
+                                                            .txtInterMedium13,
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding: getPadding(
+                                                        top: 14,
+                                                      ),
+                                                      child: Row(
+                                                        children: [
+                                                          Text(
+                                                            "Total",
+                                                            overflow:
+                                                                TextOverflow
+                                                                    .ellipsis,
                                                             textAlign:
                                                                 TextAlign.left,
+                                                            style: AppStyle
+                                                                .txtInterRegular12Bluegray900,
                                                           ),
-                                                        ),
-                                                      ],
+                                                          Padding(
+                                                            padding: getPadding(
+                                                              left: 50,
+                                                            ),
+                                                            child: RichText(
+                                                              text: TextSpan(
+                                                                children: [
+                                                                  TextSpan(
+                                                                    text: "₹",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .black900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                  TextSpan(
+                                                                    text:
+                                                                        "100000",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      color: ColorConstant
+                                                                          .black900,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                        12,
+                                                                      ),
+                                                                      fontFamily:
+                                                                          'Inter',
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w700,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .left,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
                                                     ),
-                                                  ),
-                                                ],
+                                                  ],
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Container(
-                          margin: getMargin(
-                            left: 4,
-                            top: 18,
-                            right: 3,
-                            bottom: 127,
-                          ),
-                          padding: getPadding(
-                            left: 12,
-                            right: 12,
-                          ),
-                          decoration: AppDecoration.outlineGray400.copyWith(
-                            borderRadius: BorderRadiusStyle.roundedBorder10,
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Padding(
-                                padding: getPadding(
-                                  left: 1,
-                                  top: 10,
-                                  right: 15,
-                                ),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    CustomImageView(
-                                      imagePath: ImageConstant.imgBulding1,
-                                      height: getVerticalSize(
-                                        46,
-                                      ),
-                                      width: getHorizontalSize(
-                                        50,
-                                      ),
-                                      margin: getMargin(
-                                        top: 1,
-                                        bottom: 6,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Padding(
-                                        padding: getPadding(
-                                          left: 6,
-                                        ),
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Shanti Villa",
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.left,
-                                              style: AppStyle.txtInterBold16,
-                                            ),
-                                            Container(
-                                              height: getVerticalSize(
-                                                31,
-                                              ),
-                                              width: getHorizontalSize(
-                                                224,
-                                              ),
-                                              margin: getMargin(
-                                                left: 2,
-                                                top: 1,
-                                              ),
-                                              child: Stack(
-                                                alignment: Alignment.bottomLeft,
-                                                children: [
-                                                  Align(
-                                                    alignment:
-                                                        Alignment.topCenter,
-                                                    child: Text(
-                                                      "Pocket 6, Sector 9, Rohini, Delhi, India...",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular12,
-                                                    ),
-                                                  ),
-                                                  CustomDropDown(
-                                                    width: getHorizontalSize(
-                                                      106,
-                                                    ),
-                                                    focusNode: FocusNode(),
-                                                    hintText: "Access Control",
-                                                    variant:
-                                                        DropDownVariant.None,
-                                                    padding: DropDownPadding
-                                                        .PaddingT1,
-                                                    fontStyle: DropDownFontStyle
-                                                        .InterMedium12,
-                                                    alignment:
-                                                        Alignment.bottomLeft,
-                                                    items: dropdownItemList1,
-                                                    onChanged: (value) {},
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                height: getVerticalSize(
-                                  121,
-                                ),
-                                width: getHorizontalSize(
-                                  298,
-                                ),
-                                margin: getMargin(
-                                  left: 1,
-                                  top: 1,
-                                ),
-                                child: Stack(
-                                  alignment: Alignment.topLeft,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.topRight,
-                                      child: Padding(
-                                        padding: getPadding(
-                                          top: 8,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 17,
-                                              ),
-                                              child: Text(
-                                                "Maintenance",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style:
-                                                    AppStyle.txtInterMedium13,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 13,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Total",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtInterRegular12Bluegray900,
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 52,
-                                                    ),
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                        children: [
-                                                          TextSpan(
-                                                            text: "₹",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .black900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            ),
-                                                          ),
-                                                          TextSpan(
-                                                            text: "100000",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .black900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      textAlign: TextAlign.left,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Padding(
-                                        padding: getPadding(
-                                          top: 11,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 18,
-                                              ),
-                                              child: Text(
-                                                "Rent Status",
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style:
-                                                    AppStyle.txtInterMedium13,
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 2,
-                                                top: 10,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Total",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtInterRegular12Bluegray900,
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 48,
-                                                    ),
-                                                    child: Text(
-                                                      "₹100000",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular12Cyan900,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 4,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Text(
-                                                    "Received",
-                                                    overflow:
-                                                        TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle
-                                                        .txtInterRegular12Bluegray900,
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 25,
-                                                    ),
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                        children: [
-                                                          TextSpan(
-                                                            text: "₹",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .green900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            ),
-                                                          ),
-                                                          TextSpan(
-                                                            text: "100000",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .green900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      textAlign: TextAlign.left,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 5,
-                                              ),
-                                              child: Row(
-                                                children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      top: 1,
-                                                    ),
-                                                    child: Text(
-                                                      "Pending",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular12Bluegray900,
-                                                    ),
-                                                  ),
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      left: 31,
-                                                      bottom: 1,
-                                                    ),
-                                                    child: RichText(
-                                                      text: TextSpan(
-                                                        children: [
-                                                          TextSpan(
-                                                            text: "₹",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .pink900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w700,
-                                                            ),
-                                                          ),
-                                                          TextSpan(
-                                                            text: "100000",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  ColorConstant
-                                                                      .pink900,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                12,
-                                                              ),
-                                                              fontFamily:
-                                                                  'Inter',
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      textAlign: TextAlign.left,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.topCenter,
-                                      child: SizedBox(
-                                        height: getVerticalSize(
-                                          103,
-                                        ),
-                                        child: VerticalDivider(
-                                          width: getHorizontalSize(
-                                            1,
-                                          ),
-                                          thickness: getVerticalSize(
-                                            1,
-                                          ),
-                                          color: ColorConstant.gray400,
-                                          indent: getHorizontalSize(
-                                            6,
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Align(
-                                      alignment: Alignment.centerRight,
-                                      child: Container(
-                                        margin: getMargin(
-                                          left: 53,
-                                          right: 32,
-                                        ),
-                                        padding: getPadding(
-                                          left: 5,
-                                          top: 12,
-                                          right: 5,
-                                          bottom: 12,
-                                        ),
-                                        decoration: AppDecoration
-                                            .outlineBlack9003f
-                                            .copyWith(
-                                          borderRadius:
-                                              BorderRadiusStyle.roundedBorder10,
-                                        ),
-                                        child: ListView.separated(
-                                          physics:
-                                              NeverScrollableScrollPhysics(),
-                                          shrinkWrap: true,
-                                          separatorBuilder: (context, index) {
-                                            return SizedBox(
-                                              height: getVerticalSize(
-                                                5,
-                                              ),
-                                            );
-                                          },
-                                          itemCount: 4,
-                                          itemBuilder: (context, index) {
-                                            return ListaccountcircItemWidget();
-                                          },
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],

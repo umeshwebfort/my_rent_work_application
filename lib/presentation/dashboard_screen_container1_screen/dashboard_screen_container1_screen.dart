@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:my_rent_work_application/core/app_export.dart';
+import 'package:my_rent_work_application/presentation/access_control_screen/access_control_screen.dart';
+import 'package:my_rent_work_application/presentation/add_building_property_screen/add_building_property_screen.dart';
+import 'package:my_rent_work_application/presentation/chat_one_screen/chat_one_screen.dart';
+import 'package:my_rent_work_application/presentation/chat_screen/chat_screen.dart';
 import 'package:my_rent_work_application/presentation/dashboard_screen_container_page/dashboard_screen_container_page.dart';
+import 'package:my_rent_work_application/presentation/property_detail_page_filter_screen/property_detail_page_filter_screen.dart';
+import 'package:my_rent_work_application/presentation/select_person_screen/select_person_screen.dart';
 import 'package:my_rent_work_application/widgets/custom_bottom_bar.dart';
 
 // ignore_for_file: must_be_immutable
@@ -32,11 +38,11 @@ class DashboardScreenContainer1Screen extends StatelessWidget {
       case BottomBarEnum.Home:
         return AppRoutes.dashboardScreenContainerPage;
       case BottomBarEnum.Add:
-        return "/";
+        return AppRoutes.addBuildingPropertyScreen;
       case BottomBarEnum.Access:
-        return "/";
+        return AppRoutes.accessControlScreen;
       case BottomBarEnum.Chat:
-        return "/";
+        return AppRoutes.chatOneScreen;
       default:
         return "/";
     }
@@ -47,6 +53,19 @@ class DashboardScreenContainer1Screen extends StatelessWidget {
     switch (currentRoute) {
       case AppRoutes.dashboardScreenContainerPage:
         return DashboardScreenContainerPage();
+      case AppRoutes.addBuildingPropertyScreen:
+        return AddBuildingPropertyScreen();
+      case AppRoutes.accessControlScreen:
+        return AccessControlScreen();
+      case AppRoutes.chatOneScreen:
+        return ChatOneScreen();
+      case AppRoutes.selectPersonScreen:
+        return SelectPersonScreen();
+      case AppRoutes.chatScreen:
+        return ChatScreen();
+      case AppRoutes.propertyDetailPageFilterScreen:
+        return PropertyDetailPageFilterScreen();
+
       default:
         return DefaultWidget();
     }

@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:my_rent_work_application/core/app_export.dart';
 import 'package:my_rent_work_application/widgets/app_bar/appbar_image.dart';
 import 'package:my_rent_work_application/widgets/app_bar/appbar_title.dart';
@@ -8,8 +11,82 @@ import 'package:my_rent_work_application/widgets/custom_button.dart';
 import 'package:my_rent_work_application/widgets/custom_switch.dart';
 import 'package:my_rent_work_application/widgets/custom_text_form_field.dart';
 
-class AddBuildingPropertyScreen extends StatelessWidget {
+import '../../widgets/custom_text_field.dart';
+
+class AddBuildingPropertyScreen extends StatefulWidget {
+  @override
+  State<AddBuildingPropertyScreen> createState() =>
+      _AddBuildingPropertyScreenState();
+}
+
+class _AddBuildingPropertyScreenState extends State<AddBuildingPropertyScreen> {
+  File? _image;
+
+  Future<void> _uploadImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedImage = await picker.pickImage(source: source);
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+      });
+    }
+  }
+
+  List<String> indianStates = [
+    'Andhra Pradesh',
+    'Arunachal Pradesh',
+    'Assam',
+    'Bihar',
+    'Chhattisgarh',
+    'Goa',
+    'Gujarat',
+    'Haryana',
+    'Himachal Pradesh',
+    'Jharkhand',
+    'Karnataka',
+    'Kerala',
+    'Madhya Pradesh',
+    'Maharashtra',
+    'Manipur',
+    'Meghalaya',
+    'Mizoram',
+    'Nagaland',
+    'Odisha',
+    'Punjab',
+    'Rajasthan',
+    'Sikkim',
+    'Tamil Nadu',
+    'Telangana',
+    'Tripura',
+    'Uttar Pradesh',
+    'Uttarakhand',
+    'West Bengal',
+    'Andaman and Nicobar Islands',
+    'Chandigarh',
+    'Dadra and Nagar Haveli and Daman and Diu',
+    'Delhi',
+    'Ladakh',
+    'Lakshadweep',
+    'Puducherry',
+  ];
+  var val = 0;
+  String selectedState = "";
+
+  bool toggleValueForFlats = false;
+  bool toggleValueforShops = false;
+  bool toggleValueforHalls = false;
+  bool toggleValueforPlots = false;
+
+  int numberOfFlats = 0;
+  int numberOfShops = 0;
+  int numberOfHalls = 0;
+  int numberOfPlots = 0;
+
   TextEditingController rectanglethirteController = TextEditingController();
+
+  TextEditingController _nameController = TextEditingController();
+
+  TextEditingController _AddressController = TextEditingController();
 
   TextEditingController rectanglefourteController = TextEditingController();
 
@@ -105,20 +182,11 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                               left: 5,
                               top: 19,
                             ),
-                            child: Text(
-                              "Name",
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtInterRegular16Black900,
-                            ),
-                          ),
-                          CustomTextFormField(
-                            focusNode: FocusNode(),
-                            controller: rectanglethirteController,
-                            margin: getMargin(
-                              left: 5,
-                              top: 1,
-                              right: 7,
+                            child: Expanded(
+                              child: CustomTextField(
+                                labelText: 'Name',
+                                controller: _nameController,
+                              ),
                             ),
                           ),
                           Padding(
@@ -126,122 +194,56 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                               left: 7,
                               top: 15,
                             ),
-                            child: Text(
-                              "Address",
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.left,
-                              style: AppStyle.txtInterRegular16Black900,
-                            ),
-                          ),
-                          CustomTextFormField(
-                            focusNode: FocusNode(),
-                            controller: rectanglefourteController,
-                            margin: getMargin(
-                              left: 7,
-                              top: 1,
-                              right: 5,
+                            child: Expanded(
+                              child: CustomTextField(
+                                labelText: 'Address',
+                                controller: _AddressController,
+                              ),
                             ),
                           ),
                           Padding(
                             padding: getPadding(
-                              left: 8,
+                              left: 7,
                               top: 12,
-                              right: 6,
                             ),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: Padding(
-                                    padding: getPadding(
-                                      right: 9,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Padding(
-                                          padding: getPadding(
-                                            left: 1,
-                                          ),
-                                          child: Text(
-                                            "State",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle
-                                                .txtInterRegular16Black900,
-                                          ),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: getPadding(
+                                          left: 1,
                                         ),
-                                        Container(
-                                          height: getVerticalSize(
-                                            36,
-                                          ),
-                                          width: getHorizontalSize(
-                                            150,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: ColorConstant.whiteA700,
-                                            borderRadius: BorderRadius.circular(
-                                              getHorizontalSize(
-                                                7,
+                                      ),
+                                      Container(
+                                        height: 57,
+                                        child: DropdownButtonFormField<String>(
+                                            value: indianStates[val],
+                                            onChanged: (newValue) {
+                                              setState(() {
+                                                selectedState = newValue!;
+                                              });
+                                            },
+                                            items: indianStates.map((state) {
+                                              return DropdownMenuItem<String>(
+                                                value: state,
+                                                child: Text(state),
+                                              );
+                                            }).toList(),
+                                            decoration: InputDecoration(
+                                              labelText: 'State',
+                                              border: OutlineInputBorder(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
                                               ),
-                                            ),
-                                            border: Border.all(
-                                              color: ColorConstant.blueGray100,
-                                              width: getHorizontalSize(
-                                                1,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Padding(
-                                    padding: getPadding(
-                                      left: 9,
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Pin Code",
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.left,
-                                          style: AppStyle
-                                              .txtInterRegular16Black900,
-                                        ),
-                                        Container(
-                                          height: getVerticalSize(
-                                            36,
-                                          ),
-                                          width: getHorizontalSize(
-                                            150,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            color: ColorConstant.whiteA700,
-                                            borderRadius: BorderRadius.circular(
-                                              getHorizontalSize(
-                                                7,
-                                              ),
-                                            ),
-                                            border: Border.all(
-                                              color: ColorConstant.blueGray100,
-                                              width: getHorizontalSize(
-                                                1,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                            )),
+                                      )
+                                    ],
                                   ),
                                 ),
                               ],
@@ -267,76 +269,79 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                DottedBorder(
-                                  color: ColorConstant.gray500,
-                                  padding: EdgeInsets.only(
-                                    left: getHorizontalSize(
-                                      1,
+                                ElevatedButton(
+                                  onPressed: () {
+                                    showDialog(
+                                      context: context,
+                                      builder: (BuildContext dialogContext) {
+                                        return AlertDialog(
+                                          title: Text("Choose an option"),
+                                          content: SingleChildScrollView(
+                                            child: ListBody(
+                                              children: [
+                                                GestureDetector(
+                                                  child: Text("Camera"),
+                                                  onTap: () {
+                                                    _uploadImage(
+                                                        ImageSource.camera);
+                                                    Navigator.pop(
+                                                        dialogContext);
+                                                  },
+                                                ),
+                                                SizedBox(height: 20),
+                                                GestureDetector(
+                                                  child: Text("Gallery"),
+                                                  onTap: () {
+                                                    _uploadImage(
+                                                        ImageSource.gallery);
+                                                    Navigator.pop(
+                                                        dialogContext);
+                                                  },
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    padding: EdgeInsets.symmetric(
+                                      vertical: 37,
+                                      horizontal: 10,
                                     ),
-                                    top: getVerticalSize(
-                                      1,
-                                    ),
-                                    right: getHorizontalSize(
-                                      1,
-                                    ),
-                                    bottom: getVerticalSize(
-                                      1,
+                                    backgroundColor: Colors.transparent,
+                                    elevation: 0,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(15),
+                                      side: BorderSide(
+                                        color: ColorConstant.gray500,
+                                        width: 1,
+                                        style: BorderStyle.solid,
+                                      ),
                                     ),
                                   ),
-                                  strokeWidth: getHorizontalSize(
-                                    1,
-                                  ),
-                                  radius: Radius.circular(
-                                    15,
-                                  ),
-                                  borderType: BorderType.RRect,
-                                  dashPattern: [
-                                    2,
-                                    2,
-                                  ],
-                                  child: Container(
-                                    padding: getPadding(
-                                      left: 13,
-                                      top: 33,
-                                      right: 13,
-                                      bottom: 33,
-                                    ),
-                                    decoration:
-                                        AppDecoration.outlineGray500.copyWith(
-                                      borderRadius:
-                                          BorderRadiusStyle.roundedBorder15,
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        CustomImageView(
-                                          svgPath: ImageConstant.imgCloudupload,
-                                          height: getSize(
-                                            46,
-                                          ),
-                                          width: getSize(
-                                            46,
-                                          ),
-                                          margin: getMargin(
-                                            top: 1,
-                                          ),
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      CustomImageView(
+                                        svgPath: ImageConstant.imgCloudupload,
+                                        height: getSize(46),
+                                        width: getSize(46),
+                                        margin: getMargin(top: 1),
+                                      ),
+                                      Padding(
+                                        padding: getPadding(top: 5),
+                                        child: Text(
+                                          "Drag & drop your image",
+                                          overflow: TextOverflow.ellipsis,
+                                          textAlign: TextAlign.left,
+                                          style:
+                                              AppStyle.txtInterRegular12Gray600,
                                         ),
-                                        Padding(
-                                          padding: getPadding(
-                                            top: 10,
-                                          ),
-                                          child: Text(
-                                            "Drag & drop your image",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle
-                                                .txtInterRegular12Gray600,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 Card(
@@ -347,26 +352,14 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       color: ColorConstant.gray500,
-                                      width: getHorizontalSize(
-                                        1,
-                                      ),
+                                      width: getHorizontalSize(1),
                                     ),
                                     borderRadius:
                                         BorderRadiusStyle.roundedBorder15,
                                   ),
                                   child: Container(
-                                    height: getVerticalSize(
-                                      140,
-                                    ),
-                                    width: getHorizontalSize(
-                                      161,
-                                    ),
-                                    padding: getPadding(
-                                      left: 29,
-                                      top: 19,
-                                      right: 29,
-                                      bottom: 19,
-                                    ),
+                                    height: getVerticalSize(140),
+                                    width: getHorizontalSize(161),
                                     decoration:
                                         AppDecoration.outlineGray500.copyWith(
                                       borderRadius:
@@ -374,16 +367,22 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                                     ),
                                     child: Stack(
                                       children: [
-                                        CustomImageView(
-                                          imagePath: ImageConstant.imgBulding1,
-                                          height: getSize(
-                                            102,
+                                        if (_image != null)
+                                          Positioned.fill(
+                                            child: Image.file(
+                                              _image!,
+                                              fit: BoxFit.cover,
+                                            ),
                                           ),
-                                          width: getSize(
-                                            102,
+                                        if (_image == null)
+                                          Center(
+                                            child: Text(
+                                              "No image selected",
+                                              style: TextStyle(
+                                                color: Colors.grey,
+                                              ),
+                                            ),
                                           ),
-                                          alignment: Alignment.center,
-                                        ),
                                       ],
                                     ),
                                   ),
@@ -391,320 +390,286 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                               ],
                             ),
                           ),
+                          Padding(
+                            padding: getPadding(left: 3, top: 20),
+                            child: Text(
+                              "Select Your Building Units",
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtInterRegular16Black900,
+                            ),
+                          ),
                           Container(
-                            height: getVerticalSize(
-                              355,
+                            width: getHorizontalSize(340),
+                            margin: getMargin(left: 5, top: 3, right: 5),
+                            child: Text(
+                              "Specify the number of flats, shops, and other units in the building to streamline tenant record management.",
+                              maxLines: null,
+                              textAlign: TextAlign.left,
+                              style: AppStyle.txtInterRegular14Gray600,
                             ),
-                            width: getHorizontalSize(
-                              322,
-                            ),
-                            margin: getMargin(
-                              left: 3,
-                              top: 13,
-                            ),
+                          ),
+                          Container(
+                            width: getHorizontalSize(450),
+                            margin: getMargin(left: 3, top: 5, right: 3),
                             child: Stack(
                               alignment: Alignment.center,
                               children: [
-                                CustomSwitch(
-                                  margin: getMargin(
-                                    right: 11,
-                                    bottom: 109,
-                                  ),
-                                  alignment: Alignment.bottomRight,
-                                  value: isSelectedSwitch,
-                                  onChanged: (value) {
-                                    isSelectedSwitch = value;
-                                  },
-                                ),
                                 Align(
                                   alignment: Alignment.center,
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
-                                      Padding(
-                                        padding: getPadding(
-                                          left: 3,
-                                        ),
-                                        child: Text(
-                                          "Select Your Building Units",
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.left,
-                                          style: AppStyle
-                                              .txtInterRegular16Black900,
-                                        ),
-                                      ),
                                       Container(
-                                        width: getHorizontalSize(
-                                          311,
-                                        ),
-                                        margin: getMargin(
-                                          left: 5,
-                                          top: 3,
-                                          right: 5,
-                                        ),
-                                        child: Text(
-                                          "Specify the number of flats, shops, and other units in the building to streamline tenant record management.",
-                                          maxLines: null,
-                                          textAlign: TextAlign.left,
-                                          style:
-                                              AppStyle.txtInterRegular14Gray600,
-                                        ),
-                                      ),
-                                      Container(
-                                        margin: getMargin(
-                                          top: 2,
-                                        ),
-                                        padding: getPadding(
-                                          top: 17,
-                                          bottom: 17,
-                                        ),
+                                        margin: getMargin(top: 7),
                                         decoration: AppDecoration
                                             .outlineGray3001
                                             .copyWith(
                                           borderRadius:
                                               BorderRadiusStyle.roundedBorder15,
                                         ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 14,
-                                                right: 12,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(16.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Row(
                                                 children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      bottom: 3,
-                                                    ),
-                                                    child: Text(
-                                                      "Flats",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular16Black900,
-                                                    ),
+                                                  Text(
+                                                    'Flats',
+                                                    style:
+                                                        TextStyle(fontSize: 16),
                                                   ),
-                                                  CustomSwitch(
-                                                    value: isSelectedSwitch1,
+                                                  Spacer(),
+                                                  Switch(
+                                                    value: toggleValueForFlats,
                                                     onChanged: (value) {
-                                                      isSelectedSwitch1 = value;
+                                                      setState(() {
+                                                        toggleValueForFlats =
+                                                            value;
+                                                        if (!toggleValueForFlats) {
+                                                          numberOfFlats =
+                                                              0; // Reset the number of flats when toggle is turned off
+                                                        }
+                                                      });
                                                     },
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 14,
-                                                top: 19,
-                                                right: 12,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      top: 4,
-                                                      bottom: 3,
+                                              if (toggleValueForFlats)
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Number of Flats:',
+                                                      style: TextStyle(
+                                                          fontSize: 16),
                                                     ),
-                                                    child: Text(
-                                                      "Number of Flats",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular16Gray500,
+                                                    Spacer(),
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          if (numberOfFlats >
+                                                              0) {
+                                                            numberOfFlats--;
+                                                          }
+                                                        });
+                                                      },
                                                     ),
-                                                  ),
-                                                  CustomImageView(
-                                                    svgPath:
-                                                        ImageConstant.imgRemove,
-                                                    height: getSize(
-                                                      24,
+                                                    Text(
+                                                      numberOfFlats.toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 16),
                                                     ),
-                                                    width: getSize(
-                                                      24,
+                                                    IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          numberOfFlats++;
+                                                        });
+                                                      },
                                                     ),
-                                                    margin: getMargin(
-                                                      left: 43,
-                                                      top: 2,
-                                                      bottom: 2,
-                                                    ),
-                                                  ),
-                                                  CustomButton(
-                                                    height: getVerticalSize(
-                                                      28,
-                                                    ),
-                                                    width: getHorizontalSize(
-                                                      64,
-                                                    ),
-                                                    text: "0",
-                                                    margin: getMargin(
-                                                      left: 10,
-                                                    ),
-                                                    variant: ButtonVariant
-                                                        .OutlineGray300_1,
-                                                    shape: ButtonShape
-                                                        .RoundedBorder5,
-                                                    fontStyle: ButtonFontStyle
-                                                        .InterRegular16,
-                                                  ),
-                                                  CustomImageView(
-                                                    svgPath:
-                                                        ImageConstant.imgAdd,
-                                                    height: getSize(
-                                                      24,
-                                                    ),
-                                                    width: getSize(
-                                                      24,
-                                                    ),
-                                                    margin: getMargin(
-                                                      left: 10,
-                                                      top: 2,
-                                                      bottom: 2,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 13,
-                                              ),
-                                              child: Divider(
-                                                height: getVerticalSize(
-                                                  1,
+                                                  ],
                                                 ),
-                                                thickness: getVerticalSize(
-                                                  1,
-                                                ),
-                                                color:
-                                                    ColorConstant.blueGray100,
-                                              ),
-                                            ),
-                                            CustomTextFormField(
-                                              focusNode: FocusNode(),
-                                              controller: shopsController,
-                                              hintText: "Shops",
-                                              margin: getMargin(
-                                                top: 19,
-                                                right: 1,
-                                              ),
-                                              variant: TextFormFieldVariant
-                                                  .UnderLineBluegray100,
-                                              padding: TextFormFieldPadding
-                                                  .PaddingAll1,
-                                              fontStyle: TextFormFieldFontStyle
-                                                  .InterRegular16Black900,
-                                              textInputAction:
-                                                  TextInputAction.done,
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 20,
-                                                top: 15,
-                                                right: 13,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
+                                              Row(
                                                 children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      bottom: 4,
-                                                    ),
-                                                    child: Text(
-                                                      "Halls",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular16Black900,
-                                                    ),
+                                                  Text(
+                                                    'Shops',
+                                                    style:
+                                                        TextStyle(fontSize: 16),
                                                   ),
-                                                  CustomSwitch(
-                                                    margin: getMargin(
-                                                      top: 1,
-                                                    ),
-                                                    value: isSelectedSwitch2,
+                                                  Spacer(),
+                                                  Switch(
+                                                    value: toggleValueforShops,
                                                     onChanged: (value) {
-                                                      isSelectedSwitch2 = value;
+                                                      setState(() {
+                                                        toggleValueforShops =
+                                                            value;
+                                                        if (!toggleValueforShops) {
+                                                          numberOfShops =
+                                                              0; // Reset the number of flats when toggle is turned off
+                                                        }
+                                                      });
                                                     },
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                top: 14,
-                                              ),
-                                              child: Divider(
-                                                height: getVerticalSize(
-                                                  2,
+                                              if (toggleValueforShops)
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Number of Shops:',
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    Spacer(),
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          if (numberOfShops >
+                                                              0) {
+                                                            numberOfShops--;
+                                                          }
+                                                        });
+                                                      },
+                                                    ),
+                                                    Text(
+                                                      numberOfShops.toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          numberOfShops++;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
                                                 ),
-                                                thickness: getVerticalSize(
-                                                  2,
-                                                ),
-                                                color:
-                                                    ColorConstant.blueGray100,
-                                                endIndent: getHorizontalSize(
-                                                  1,
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: getPadding(
-                                                left: 22,
-                                                top: 15,
-                                                right: 12,
-                                                bottom: 1,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
+                                              Row(
                                                 children: [
-                                                  Padding(
-                                                    padding: getPadding(
-                                                      bottom: 5,
-                                                    ),
-                                                    child: Text(
-                                                      "Plots",
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle
-                                                          .txtInterRegular16Black900,
-                                                    ),
+                                                  Text(
+                                                    'Halls',
+                                                    style:
+                                                        TextStyle(fontSize: 16),
                                                   ),
-                                                  CustomSwitch(
-                                                    margin: getMargin(
-                                                      top: 2,
-                                                    ),
-                                                    value: isSelectedSwitch3,
+                                                  Spacer(),
+                                                  Switch(
+                                                    value: toggleValueforHalls,
                                                     onChanged: (value) {
-                                                      isSelectedSwitch3 = value;
+                                                      setState(() {
+                                                        toggleValueforHalls =
+                                                            value;
+                                                        if (!toggleValueforHalls) {
+                                                          numberOfHalls =
+                                                              0; // Reset the number of flats when toggle is turned off
+                                                        }
+                                                      });
                                                     },
                                                   ),
                                                 ],
                                               ),
-                                            ),
-                                          ],
+                                              if (toggleValueforHalls)
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Number of Halls:',
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    Spacer(),
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          if (numberOfHalls >
+                                                              0) {
+                                                            numberOfHalls--;
+                                                          }
+                                                        });
+                                                      },
+                                                    ),
+                                                    Text(
+                                                      numberOfHalls.toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          numberOfHalls++;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                              Row(
+                                                children: [
+                                                  Text(
+                                                    'Plots',
+                                                    style:
+                                                        TextStyle(fontSize: 16),
+                                                  ),
+                                                  Spacer(),
+                                                  Switch(
+                                                    value: toggleValueforPlots,
+                                                    onChanged: (value) {
+                                                      setState(() {
+                                                        toggleValueforPlots =
+                                                            value;
+                                                        if (!toggleValueforPlots) {
+                                                          numberOfPlots =
+                                                              0; // Reset the number of flats when toggle is turned off
+                                                        }
+                                                      });
+                                                    },
+                                                  ),
+                                                ],
+                                              ),
+                                              if (toggleValueforPlots)
+                                                Row(
+                                                  children: [
+                                                    Text(
+                                                      'Number of Plots:',
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    Spacer(),
+                                                    IconButton(
+                                                      icon: Icon(Icons.remove),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          if (numberOfPlots >
+                                                              0) {
+                                                            numberOfPlots--;
+                                                          }
+                                                        });
+                                                      },
+                                                    ),
+                                                    Text(
+                                                      numberOfPlots.toString(),
+                                                      style: TextStyle(
+                                                          fontSize: 16),
+                                                    ),
+                                                    IconButton(
+                                                      icon: Icon(Icons.add),
+                                                      onPressed: () {
+                                                        setState(() {
+                                                          numberOfPlots++;
+                                                        });
+                                                      },
+                                                    ),
+                                                  ],
+                                                ),
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -713,22 +678,28 @@ class AddBuildingPropertyScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          CustomButton(
-                            height: getVerticalSize(
-                              40,
+                          Container(
+                            height: getVerticalSize(40),
+                            width: getHorizontalSize(150),
+                            margin: getMargin(top: 42, bottom: 12, left: 90),
+                            decoration: BoxDecoration(
+                              color: Colors
+                                  .blue, // Set the background color to blue
+                              borderRadius: BorderRadius.circular(
+                                  20), // Adjust the border radius as needed
                             ),
-                            width: getHorizontalSize(
-                              165,
+                            child: CustomButton(
+                              height: getVerticalSize(40),
+                              width: getHorizontalSize(165),
+                              text: "Save",
+                              padding: ButtonPadding.PaddingAll9,
+                              fontStyle: ButtonFontStyle.InterRegular18,
+                              alignment: Alignment.center,
+                              onTap: () {
+                                // Add your save button functionality here
+                                print("Save button tapped");
+                              },
                             ),
-                            text: "Save",
-                            margin: getMargin(
-                              top: 42,
-                              bottom: 12,
-                            ),
-                            shape: ButtonShape.CircleBorder20,
-                            padding: ButtonPadding.PaddingAll9,
-                            fontStyle: ButtonFontStyle.InterRegular18,
-                            alignment: Alignment.center,
                           ),
                         ],
                       ),

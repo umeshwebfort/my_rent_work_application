@@ -90,11 +90,11 @@ class ChatScreen extends StatelessWidget {
           width: size.width,
           child: SingleChildScrollView(
             padding: getPadding(
-              top: 2,
+              top: 0,
             ),
             child: Container(
               height: getVerticalSize(
-                875,
+                620,
               ),
               width: double.maxFinite,
               child: Stack(
@@ -112,7 +112,7 @@ class ChatScreen extends StatelessWidget {
                         children: [
                           Container(
                             height: getVerticalSize(
-                              866,
+                              660,
                             ),
                             width: double.maxFinite,
                             margin: getMargin(

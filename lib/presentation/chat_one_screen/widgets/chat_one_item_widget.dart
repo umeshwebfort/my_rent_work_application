@@ -33,7 +33,7 @@ class ChatOneItemWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Text(
-                  "",
+                  "Vikas",
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.left,
                   style: AppStyle.txtInterBold16,
@@ -60,6 +60,9 @@ class ChatOneItemWidget extends StatelessWidget {
               top: 5,
               bottom: 5,
             ),
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.chatScreen);
+            },
           ),
         ],
       ),

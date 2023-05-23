@@ -232,11 +232,11 @@ class _SignUpScreenDoneScreenState extends State<SignUpScreenDoneScreen> {
                                           (FirebaseAuthException e) {},
                                       codeSent: (String verificationId,
                                           int? resendToken) {
+                                        print(
+                                            "\n Start ${SignUpScreenDoneScreen.verify} 239 line no.Umesh Bind Testing");
                                         SignUpScreenDoneScreen.verify =
                                             verificationId;
                                         // OtpScreenDoneScreen("phone":countryController.text + phone);
-                                        print(
-                                            "${SignUpScreenDoneScreen.verify} 239 line no.");
                                       },
                                       codeAutoRetrievalTimeout:
                                           (String verificationId) {},
