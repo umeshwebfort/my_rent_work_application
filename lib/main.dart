@@ -20,9 +20,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         visualDensity: VisualDensity.standard,
       ),
-      title: 'My Rent Work Application',
+      title: 'My Rent Work',
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoutes.appNavigationScreen,
+      initialRoute: AppRoutes.signUpScreenDoneOneScreen,
       routes: AppRoutes.routes,
     );
   }
