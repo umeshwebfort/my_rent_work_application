@@ -1,14 +1,17 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:my_rent_work_application/core/app_export.dart';
+import 'package:my_rent_work_application/presentation/dashboard_screen_container1_screen/dashboard_screen_container1_screen.dart';
 import 'package:my_rent_work_application/presentation/sign_up_screen_done_screen/sign_up_screen_done_screen.dart';
 import 'package:my_rent_work_application/widgets/custom_button.dart';
 import 'package:my_rent_work_application/widgets/custom_text_form_field.dart';
 import 'package:pinput/pinput.dart';
 
 class OtpScreenDoneScreen extends StatefulWidget {
+  final String text;
   const OtpScreenDoneScreen({
     Key? key,
+    required this.text,
   }) : super(key: key);
   @override
   State<OtpScreenDoneScreen> createState() => _OtpScreenDoneScreenState();
@@ -18,6 +21,7 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
   TextEditingController enterotpController = TextEditingController();
   FirebaseAuth auth = FirebaseAuth.instance;
   String smsCode = 'xxxx';
+  String text = "";
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +48,7 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
         color: Color.fromRGBO(234, 239, 243, 1),
       ),
     );
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: ColorConstant.pink900,
@@ -249,6 +254,8 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
                               padding: ButtonPadding.PaddingAll9,
                               fontStyle: ButtonFontStyle.InterRegular18,
                               onTap: () async {
+                                print(
+                                    "${text} =>Text passing from signup screen to otp verify");
                                 print("${smsCode} Umesh bind SMS Code");
                                 try {
                                   PhoneAuthCredential credential =
@@ -259,10 +266,11 @@ class _OtpScreenDoneScreenState extends State<OtpScreenDoneScreen> {
 
                                   // Sign the user in (or link) with the credential
                                   await auth.signInWithCredential(credential);
-                                  Navigator.pushNamedAndRemoveUntil(
+                                  Navigator.push(
                                       context,
-                                      "/dashboard_screen_container_page",
-                                      (route) => false);
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              DashboardScreenContainer1Screen()));
                                 } catch (e) {
                                   print("wrong OTP");
                                 }

@@ -23,6 +23,7 @@ class _SignUpScreenDoneScreenState extends State<SignUpScreenDoneScreen> {
   TextEditingController phoneNumberController = TextEditingController();
 
   var phone = "";
+  final String text = "";
   @override
   void initState() {
     // TODO: implement initState
@@ -241,8 +242,15 @@ class _SignUpScreenDoneScreenState extends State<SignUpScreenDoneScreen> {
                                       codeAutoRetrievalTimeout:
                                           (String verificationId) {},
                                     );
-                                    Navigator.pushNamed(
-                                        context, '/otp_screen_done_screen');
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            OtpScreenDoneScreen(
+                                          text: "hello",
+                                        ),
+                                      ),
+                                    );
                                   }),
                             ],
                           ),

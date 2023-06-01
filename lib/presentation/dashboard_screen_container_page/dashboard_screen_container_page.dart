@@ -77,23 +77,20 @@ class DashboardScreenContainerPage extends StatelessWidget {
             ),
           ),
           actions: [
-            CustomTextFormField(
+            CustomButton(
+              height: getVerticalSize(
+                37,
+              ),
               width: getHorizontalSize(
-                138,
+                180,
               ),
-              focusNode: FocusNode(),
-              controller: group571Controller,
-              hintText: "New List",
-              margin: getMargin(
-                left: 18,
-                top: 12,
-                right: 18,
-                bottom: 13,
-              ),
-              variant: TextFormFieldVariant.FillRed700,
-              shape: TextFormFieldShape.CircleBorder15,
-              padding: TextFormFieldPadding.PaddingAll5,
-              fontStyle: TextFormFieldFontStyle.InterRegular16,
+              text: "+ Add New Property",
+              margin: getMargin(left: 18, top: 7, right: 2),
+              variant: ButtonVariant.OutlineGray300,
+              shape: ButtonShape.CircleBorder20,
+              padding: ButtonPadding.PaddingAll9,
+              fontStyle: ButtonFontStyle.InterBold16,
+              alignment: Alignment.topLeft,
             ),
           ],
         ),

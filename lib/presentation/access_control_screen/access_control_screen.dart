@@ -160,7 +160,7 @@ class _AccessControlScreenState extends State<AccessControlScreen> {
                                 ),
                               );
                             },
-                            itemCount: 2,
+                            itemCount: 8,
                             itemBuilder: (context, index) {
                               return AccessControlItemWidget();
                             },

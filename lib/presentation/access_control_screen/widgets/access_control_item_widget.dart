@@ -39,7 +39,7 @@ class AccessControlItemWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Text(
-                        "",
+                        "Vikas",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.left,
                         style: AppStyle.txtInterBold16,
@@ -69,9 +69,7 @@ class AccessControlItemWidget extends StatelessWidget {
             Align(
               alignment: Alignment.center,
               child: Padding(
-                padding: getPadding(
-                  top: 15,
-                ),
+                padding: getPadding(top: 15, left: 41),
                 child: Text(
                   "Shanti Villa",
                   overflow: TextOverflow.ellipsis,
@@ -83,10 +81,7 @@ class AccessControlItemWidget extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: Padding(
-                padding: getPadding(
-                  top: 2,
-                  right: 34,
-                ),
+                padding: getPadding(top: 2, left: 41),
                 child: Text(
                   "Pocket 6, Sector...",
                   overflow: TextOverflow.ellipsis,
@@ -97,7 +92,7 @@ class AccessControlItemWidget extends StatelessWidget {
             ),
             Padding(
               padding: getPadding(
-                left: 49,
+                left: 41,
                 top: 2,
               ),
               child: RichText(

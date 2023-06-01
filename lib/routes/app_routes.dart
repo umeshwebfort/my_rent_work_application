@@ -82,7 +82,9 @@ class AppRoutes {
   static Map<String, WidgetBuilder> routes = {
     signUpScreenDoneOneScreen: (context) => SignUpScreenDoneOneScreen(),
     signUpScreenDoneScreen: (context) => SignUpScreenDoneScreen(),
-    otpScreenDoneScreen: (context) => OtpScreenDoneScreen(),
+    otpScreenDoneScreen: (context) => OtpScreenDoneScreen(
+          text: "hello",
+        ),
     dashboardScreenContainer1Screen: (context) =>
         DashboardScreenContainer1Screen(),
     addBuildingPropertyScreen: (context) => AddBuildingPropertyScreen(),
